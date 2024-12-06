@@ -1,0 +1,170 @@
+.flightSliderParent {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 20px;
+  gap: 40px;
+  justify-content: space-between;
+
+  .flightSliderHeading {
+    color: #000;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+  }
+}
+.flightsParent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  img {
+    margin: 0 auto;
+    min-height: 176px;
+  }
+}
+.airLineName {
+  color: #000;
+  text-align: center;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.ourOffices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  .office1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      min-height: 337px;
+    }
+  }
+  .officeLocation {
+    color: #000;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+.flightSliderParent {
+  gap: 0px !important;
+}
+
+.subscribeParent {
+  border-radius: 20px;
+  background: #0e7440;
+  padding: 54px 48px 29px 43px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 55px;
+  margin-top: 20px;
+}
+.leftSubscribeText {
+  color: #fff;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+.rightSubscribeSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 21px;
+  flex-direction: column;
+  .subscribeInput {
+    border-radius: 17px;
+    background: #fff;
+    width: calc(1232px - 542px);
+    border: none;
+    outline: none;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 62px;
+    padding-left: 20px;
+  }
+  .subscribeButton {
+    border-radius: 17px;
+    background: #feb704;
+    height: 62px;
+    padding: 0px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+    font-family: "Inter", sans-serif;
+
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.footerInfo {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  .firstInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 455px;
+    img {
+      margin: 0 auto;
+    }
+  }
+
+  .InfoText {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .secondInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .secondInfoText {
+      color: #000;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+}
+
+.copyRightText {
+  color: #000;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  span {
+    color: #0e7440 !important;
+    cursor: pointer;
+  }
+}

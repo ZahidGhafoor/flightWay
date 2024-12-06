@@ -1,0 +1,84 @@
+.navbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 92px;
+
+  .loginButton {
+    padding: 0px 31px;
+    height: 50px;
+    color: #fff;
+    background-color: #0e7440;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    border-radius: 50px;
+    background: #0e7440;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    color: #fff;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  a {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+// .navbar {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 10px 20px;
+//   background-color: #ffffff;
+//   border-bottom: 1px solid #ddd;
+
+//   .logo {
+//     img {
+//       height: 40px; // Adjust height based on your logo
+//     }
+//   }
+
+//   .menu {
+//     display: flex;
+//     gap: 20px;
+
+//     a {
+//       text-decoration: none;
+//       font-size: 16px;
+//       color: #333;
+
+//       &:hover {
+//         color: #1890ff; // Ant Design primary color
+//       }
+//     }
+//   }
+
+//   .login-button {
+//     .ant-btn-primary {
+//       background-color: #228b22; // Green color for login button
+//       border: none;
+
+//       &:hover {
+//         background-color: #196b19;
+//       }
+//     }
+//   }
+// }

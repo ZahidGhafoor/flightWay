@@ -1,0 +1,185 @@
+.homeParent {
+  display: flex;
+  flex-direction: column;
+  .homeHeading {
+    color: #000;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .malaysiaVisit {
+    background-image: url("../assets/malaysiaVisit.svg"); // Path to your image
+    background-size: cover; // Adjust the size (cover, contain, or custom values)
+    background-position: center; // Position the image
+    background-repeat: no-repeat; // Prevent the image from repeating
+    height: 302px;
+    width: 100%; // Set a width for the container
+    border-radius: 20px;
+
+    box-shadow: 8px 7px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    margin: 30px 0;
+    .leftText {
+      color: #fff;
+
+      font-size: 35px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      span {
+        color: #ffd804;
+        line-height: 60px;
+        font-size: 70px;
+        font-weight: 700;
+      }
+    }
+    .rightButton {
+      filter: drop-shadow(10px 9px 4px rgba(0, 0, 0, 0.25));
+      width: 200px;
+      height: 76px;
+      color: #0e7440;
+
+      border-radius: 20px;
+      background: #fff;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  .trendingVisaDestinations {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 30px;
+    .countriesList {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      .singleCountry {
+        display: flex;
+        flex-direction: column;
+        // gap: 20px;
+        .countryName {
+          color: #000;
+          text-align: center;
+          font-size: 23px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+    }
+  }
+  .customerReviews {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .allReviews {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 38px;
+      .singleReview {
+        filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.32));
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 15px;
+        background: rgba(255, 216, 4, 0.75);
+        // max-width: 350px;
+        margin-right: 30px;
+        .customerInfo {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding-left: 45px;
+          img {
+            height: 150px;
+            width: 150px;
+            border: 99px;
+            object-fit: contain;
+          }
+          .customerName {
+            color: #000;
+
+            font-family: "Montserrat", sans-serif;
+
+            font-size: 33px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
+        }
+        .ratingStars {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .customerReview {
+          color: #000;
+          text-align: center;
+          text-align: center;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+    }
+  }
+
+  .whyBookUs {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 25px;
+
+    .whyBookUsFeatures {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 54px;
+      .singleFeature {
+        max-width: 330px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        .featureTitle {
+          color: #000;
+
+          font-size: 28px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+        .flightInfo {
+          color: #000;
+
+          text-align: center;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+    }
+  }
+}
