@@ -12,9 +12,10 @@ import groupFlight from "../../assets/groupFlight.svg";
 import Image from "next/image";
 
 import "./GroupFlight.scss";
-import { bookings } from "@/utils/constant";
+import { airports, bookings } from "@/utils/constant";
 import { handleChange } from "@/utils/globalFunctions.util";
 import GroupService from "@/services/groupFlight.service";
+import { AutoComplete, DatePicker } from "antd";
 
 const page = () => {
   const flightFilters = [
@@ -25,15 +26,60 @@ const page = () => {
     { name: "Umrah" },
   ];
 
+  const getLabelByValue = (label) => {
+    const airport = airports.find((airport) => airport.label === label);
+    return airport ? airport.value : "";
+  };
   const [val, setVal] = useState({
     origin: "",
     destination: "",
+    date: "",
   });
+
+  const payload = {
+    origin: getLabelByValue(val.origin),
+    destination: getLabelByValue(val.destination),
+    date: "",
+  };
+  console.log("pay", payload);
+
   const [activeFilter, setActiveFilter] = useState("All");
 
   const handleSearchFlight = () => {
-    GroupService.getFlights(val);
+    GroupService.getFlights(payload);
   };
+
+  const [options, setOptions] = useState([]);
+
+  const handleChange = (e, setVal) => {
+    const { name, value } = e.target;
+    setVal((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    setOptions(getPanelValue(value));
+  };
+
+  const getPanelValue = (text) => {
+    if (!text) return []; // If no input, return empty options
+    return airports
+      .filter((airport) =>
+        airport.label.toLowerCase().includes(text.toLowerCase())
+      )
+      .map((airport) => ({
+        label: `${airport.label} (${airport.value})`,
+        value: airport.label,
+      }));
+  };
+
+  const handleSelect = (value, field) => {
+    setVal((prevState) => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
+  console.log("hllo", val);
 
   return (
     <div className="container">
@@ -63,35 +109,42 @@ const page = () => {
           <div className="searchInputs">
             <div className="input-container">
               <label htmlFor="departure">Flight From</label>
-              <input
-                className="searchSingleInput"
-                type="text"
-                id="departure"
-                placeholder="Select Departure Place"
-                name="origin"
+
+              <AutoComplete
                 value={val.origin}
-                onChange={(e) => handleChange(e, setVal)}
+                options={options}
+                onChange={(value) =>
+                  handleChange({ target: { name: "origin", value } }, setVal)
+                }
+                onSelect={(value) => handleSelect(value, "origin")}
+                placeholder="Select Departure Place"
+                className="searchSingleInput"
+                variant="borderless"
               />
             </div>
             <div className="input-container">
               <label htmlFor="departure">Flight To</label>
-              <input
-                className="searchSingleInput"
-                type="text"
-                id="departure"
-                placeholder="Select Arrival Place"
-                name="destination"
+              <AutoComplete
                 value={val.destination}
-                onChange={(e) => handleChange(e, setVal)}
+                options={options}
+                onChange={(value) =>
+                  handleChange(
+                    { target: { name: "destination", value } },
+                    setVal
+                  )
+                }
+                className="searchSingleInput"
+                variant="borderless"
+                onSelect={(value) => handleSelect(value, "destination")}
+                placeholder="Select Arrival Place"
               />
             </div>
             <div className="input-container">
               <label htmlFor="departure">Date</label>
-              <input
+
+              <DatePicker
                 className="searchSingleInput"
-                type="date"
-                id="departure"
-                placeholder="Select Departure Date"
+                placeholder="Select Flight Date"
               />
             </div>
             <div onClick={handleSearchFlight} className="searchInputResult">

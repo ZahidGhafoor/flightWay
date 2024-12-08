@@ -1,3 +1,6 @@
+export const baseUrl =
+  "https://b2b-backend-staging-627151212374.asia-east1.run.app/v1";
+
 export const bookings = [
   {
     airline: "Turkish Airline",
@@ -155,4 +158,87 @@ export const countries = [
   "Azerbaijan",
   "Bahrain",
   "USA",
+];
+
+export const companyInfoStats = [
+  { number: "03", label: "Offices" },
+  { number: "50+", label: "Staff" },
+  { number: "10+", label: "Years" },
+  { number: "4.5", label: "Star Rating" },
+];
+
+export const navbarLinks = [
+  {
+    name: "Group Flights",
+    url: "/group-flight",
+  },
+  {
+    name: "Visa",
+    url: "/visas",
+  },
+  {
+    name: "Umrah",
+    url: "/umrah",
+  },
+  {
+    name: "Services",
+    url: "/services",
+  },
+  {
+    name: "Tracking",
+    url: "/tracking",
+  },
+];
+
+export const airports = [
+  { label: "Allama Iqbal International Airport", value: "LHE" },
+  { label: "Benazir Bhutto International Airport", value: "ISB" },
+  { label: "Jinnah International Airport", value: "KHI" },
+  { label: "Peshawar Bacha Khan International Airport", value: "PEW" },
+  { label: "Multan International Airport", value: "MUX" },
+  { label: "Quetta International Airport", value: "UET" },
+  { label: "Faisalabad International Airport", value: "LHE" },
+  { label: "Sialkot International Airport", value: "SKT" },
+  { label: "Skardu Airport", value: "KDU" },
+  { label: "Gwadar International Airport", value: "GWD" },
+  { label: "Rahim Yar Khan International Airport", value: "RYK" },
+  { label: "Lahore Walton Airport", value: "LHE" },
+  { label: "King Abdulaziz International Airport", value: "JED" }, // Jeddah
+  { label: "King Khalid International Airport", value: "RUH" }, // Riyadh
+  {
+    label: "Prince Mohammed Bin Abdulaziz International Airport",
+    value: "MED",
+  }, // Madinah
+  { label: "King Fahd International Airport", value: "DMM" }, // Dammam
+  { label: "Prince Sultan bin Abdulaziz International Airport", value: "TUU" }, // Tabuk
+  { label: "Abha International Airport", value: "AHB" }, // Abha
+  { label: "Prince Nayef bin Abdulaziz International Airport", value: "ELQ" }, // Qassim
+  { label: "Jouf Domestic Airport", value: "AJF" }, // Al-Jouf
+  { label: "Hail Regional Airport", value: "HAS" }, // Hail
+  { label: "Ta'if Regional Airport", value: "TIF" }, // Ta'if
+  { label: "Najran Domestic Airport", value: "EAM" }, // Najran
+  { label: "Al-Qaisumah/Hafr Al-Batin Airport", value: "AQI" },
+  { label: "Dubai International Airport", value: "DXB" },
+  { label: "Abu Dhabi International Airport", value: "AUH" },
+  { label: "Sharjah International Airport", value: "SHJ" },
+  { label: "Al Maktoum International Airport", value: "DWC" },
+  { label: "Ras Al Khaimah International Airport", value: "RKT" },
+  { label: "Fujairah International Airport", value: "FJR" },
+  { label: "Al Ain International Airport", value: "AAN" },
+  { label: "London Heathrow Airport", value: "LHR" },
+  { label: "London Gatwick Airport", value: "LGW" },
+  { label: "London Stansted Airport", value: "STN" },
+  { label: "London Luton Airport", value: "LTN" },
+  { label: "Manchester Airport", value: "MAN" },
+  { label: "Edinburgh Airport", value: "EDI" },
+  { label: "Birmingham Airport", value: "BHX" },
+  { label: "Glasgow International Airport", value: "GLA" },
+  { label: "Bristol Airport", value: "BRS" },
+  { label: "Newcastle International Airport", value: "NCL" },
+  { label: "Liverpool John Lennon Airport", value: "LPL" },
+  { label: "Leeds Bradford Airport", value: "LBA" },
+  { label: "Southampton Airport", value: "SOU" },
+  { label: "Aberdeen International Airport", value: "ABZ" },
+  { label: "Cardiff Airport", value: "CWL" },
+  { label: "Nottingham East Midlands Airport", value: "EMA" },
 ];

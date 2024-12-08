@@ -14,7 +14,7 @@ import amazingOffer4 from "../assets/amazingOffer4.svg";
 import mobilePhone from "../assets/mobilePhone.svg";
 import Image from "next/image";
 import Slider from "react-slick";
-import { countries, reviews } from "@/utils/constant";
+import { companyInfoStats, countries, reviews } from "@/utils/constant";
 
 const Home = () => {
   const features = [
@@ -81,6 +81,34 @@ const Home = () => {
 
   return (
     <div className="homeParent container">
+      <div className="topHeading">
+        Your one stop solutions to <span>Group Flights</span>
+        <br />
+        <div className="topHeadingBottom">
+          Begin your journey with our affordable prices
+        </div>
+      </div>
+      <div className="searchServicesInput">
+        <select>
+          <option value="none">Select Service</option>
+          <option value="group">Group Flights</option>
+          <option value="Visa">Visa</option>
+          <option value="Umrah">Umrah</option>
+          <option value="Services">Services</option>
+          <option value="Tracking">Tracking</option>
+        </select>
+        <div className="searchButton">Search</div>
+      </div>
+      <div className="companyInfo">
+        {companyInfoStats.map((data, i) => {
+          return (
+            <div className="singleInfo" key={i}>
+              {data.number}
+              <div className="infoLabel">{data.label}</div>
+            </div>
+          );
+        })}
+      </div>
       <div className="amazingOfferInfo">
         {amazingOfferInfo.map((data, i) => {
           return (

@@ -71,7 +71,6 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-      // z-index: 999999;
     }
 
     .searchInputs {
@@ -84,7 +83,8 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        flex-grow: 1; /* Prevents shrinking of the button */
+        flex-grow: 1; /* This is fine, but ensure inputs don't shrink */
+        width: 100%; /* Ensure the container takes up full width */
       }
 
       label {
@@ -101,14 +101,16 @@
         border: 1px solid #000;
         background: #fff;
         outline: none;
-        max-width: 422px;
         height: 60px;
         color: #000;
-        font-size: 20px;
+        font-size: 29px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
         padding-left: 15px;
+        width: 100%; /* Ensure full width */
+        min-width: 0; /* Prevent it from shrinking */
+        max-width: 100%; /* Prevents exceeding the container width */
       }
 
       .searchInputResult {

@@ -9,7 +9,7 @@ const GroupService = {
     http.setJWT();
     console.log("data", data);
     const [success, error] = await Promisable.asPromise(
-      http.post(
+      http.get(
         `${baseUrl}//v1/groups?origin=${data.origin}&destination=${data.destination}`
       )
     );

@@ -27,6 +27,9 @@
     font-weight: 400;
     line-height: normal;
   }
+  .logo {
+    text-decoration: none;
+  }
 }
 
 .navLinks {
@@ -40,45 +43,8 @@
     font-weight: 400;
     line-height: normal;
   }
+  .active {
+    color: #0e7440 !important;
+    font-weight: 700 !important;
+  }
 }
-
-// .navbar {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 10px 20px;
-//   background-color: #ffffff;
-//   border-bottom: 1px solid #ddd;
-
-//   .logo {
-//     img {
-//       height: 40px; // Adjust height based on your logo
-//     }
-//   }
-
-//   .menu {
-//     display: flex;
-//     gap: 20px;
-
-//     a {
-//       text-decoration: none;
-//       font-size: 16px;
-//       color: #333;
-
-//       &:hover {
-//         color: #1890ff; // Ant Design primary color
-//       }
-//     }
-//   }
-
-//   .login-button {
-//     .ant-btn-primary {
-//       background-color: #228b22; // Green color for login button
-//       border: none;
-
-//       &:hover {
-//         background-color: #196b19;
-//       }
-//     }
-//   }
-// }
