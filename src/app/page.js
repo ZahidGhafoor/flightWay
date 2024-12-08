@@ -7,6 +7,11 @@ import fasterAccess from "../assets/fasterAccess.svg";
 import customerImage from "../assets/customerImage.svg";
 import RatingStars from "../assets/RatingStars.svg";
 import newZealand from "../assets/newZealand.svg";
+import amazingOffer1 from "../assets/amazingOffer1.svg";
+import amazingOffer2 from "../assets/amazingOffer2.svg";
+import amazingOffer3 from "../assets/amazingOffer3.svg";
+import amazingOffer4 from "../assets/amazingOffer4.svg";
+import mobilePhone from "../assets/mobilePhone.svg";
 import Image from "next/image";
 import Slider from "react-slick";
 import { countries, reviews } from "@/utils/constant";
@@ -27,6 +32,20 @@ const Home = () => {
       image: fasterAccess,
       title: "Faster Access",
       info: "Get instant itinerary on your email when you make your booking through Flightway.pk",
+    },
+  ];
+  const amazingOfferInfo = [
+    {
+      desc: "Online visa service all over in Pakistan",
+    },
+    {
+      desc: "Support Promotions to  fit your travel budget",
+    },
+    {
+      desc: "We plan unforgetable family tours",
+    },
+    {
+      desc: "Umrah Packages at  affordable prices",
     },
   ];
 
@@ -62,6 +81,33 @@ const Home = () => {
 
   return (
     <div className="homeParent container">
+      <div className="amazingOfferInfo">
+        {amazingOfferInfo.map((data, i) => {
+          return (
+            <div
+              className={`singleOfferInfo ${
+                i % 2 === 0 ? "evenOfferInfo" : ""
+              }`}>
+              {data.desc}
+            </div>
+          );
+        })}
+      </div>
+      <div className="amazingOffers">
+        <div className="mobilePhoneImage">
+          <Image src={mobilePhone} alt="FlightWay Logo" />
+        </div>
+        <div className="upper">
+          Save more with
+          <br /> <span>Amazing Offers</span>
+        </div>
+        <div className="amazingBottom">
+          <Image src={amazingOffer1} alt="FlightWay Logo" />
+          <Image src={amazingOffer2} alt="FlightWay Logo" />
+          <Image src={amazingOffer3} alt="FlightWay Logo" />
+          <Image src={amazingOffer4} alt="FlightWay Logo" />
+        </div>
+      </div>
       <div className="malaysiaVisit">
         <div className="leftText">
           Enjoy the visit of

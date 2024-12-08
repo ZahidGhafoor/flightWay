@@ -9,7 +9,68 @@
     font-weight: 700;
     line-height: normal;
   }
+  .amazingOfferInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .singleOfferInfo {
+      width: 300px;
+      height: 150px;
+      flex-shrink: 0;
+      border-radius: 15px;
+      background: #feb7048a;
+      color: #000;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 12px;
+      box-sizing: border-box;
+    }
+    .evenOfferInfo {
+      background: rgba(14, 116, 64, 0.56) !important;
+      color: #fff !important;
+    }
+  }
+  .amazingOffers {
+    padding-top: 46px;
+    padding-bottom: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    .mobilePhoneImage {
+      img {
+        position: absolute;
+        top: 55%;
+        right: 50px;
+        transform: translateY(-50%);
+      }
+    }
+    .upper {
+      color: #000;
+      font-size: 31px;
+      font-weight: 400;
+      line-height: normal;
+      line-height: 58px;
 
+      span {
+        color: #0e7440;
+        font-size: 70px;
+        font-weight: 700;
+      }
+    }
+    .amazingBottom {
+      display: flex;
+      align-content: center;
+      justify-content: space-between;
+      z-index: 999999999;
+    }
+  }
   .malaysiaVisit {
     background-image: url("../assets/malaysiaVisit.svg"); // Path to your image
     background-size: cover; // Adjust the size (cover, contain, or custom values)
