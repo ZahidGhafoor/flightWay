@@ -4,10 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/Templates/Footer";
 import Snackbar from "@/components/Templates/Snackbar";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import ClientProvider from "@/components/Atom/LocalizationProvider";
-// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 export const metadata = {
   title: "Flight Way",

@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import GroupFlightMainImage from "../../assets/GroupFlightMainImage.svg";
 import turkishAirline from "../../assets/turkishAirline.svg";
-import takeOff from "../../assets/takeOff.svg";
-import takeLand from "../../assets/takeLand.svg";
 import Baggage from "../../assets/Baggage.svg";
 import Trolley from "../../assets/Trolley.svg";
 import Meal from "../../assets/Meal.svg";
@@ -15,7 +13,6 @@ import "./GroupFlight.scss";
 import { airports, bookings } from "@/utils/constant";
 import { handleChange } from "@/utils/globalFunctions.util";
 import GroupService from "@/services/groupFlight.service";
-// import { AutoComplete, DatePicker } from "antd";
 import AuthService from "@/services/auth.service";
 import { Autocomplete, TextField } from "@mui/material";
 import {
@@ -24,6 +21,8 @@ import {
 } from "./constant";
 import { DatePicker } from "@mui/x-date-pickers";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import CircleLoader from "@/components/Atom/CircleLoader";
 
 const page = () => {
   const flightFilters = [
@@ -33,6 +32,7 @@ const page = () => {
     { name: "UK" },
     { name: "Umrah" },
   ];
+  const dispatch = useDispatch();
 
   const [val, setVal] = useState({
     origin: "",
@@ -50,10 +50,12 @@ const page = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const handleSearchFlight = () => {
-    GroupService.getFlights(payload);
+    GroupService.getFlights(payload, dispatch);
   };
 
   console.log("hllo", val);
+  const { loading } = useSelector((state) => state.groupFlight);
+  console.log("loading", loading);
 
   return (
     <div className="container">
@@ -78,6 +80,8 @@ const page = () => {
         </div>
 
         <div className="SearchGroupFlight">
+          {loading && <CircleLoader />}
+
           <div className="searchFlightTitle">Oneway Flights</div>
 
           <div className="searchInputs">

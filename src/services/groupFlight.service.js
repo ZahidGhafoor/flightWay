@@ -1,11 +1,12 @@
+import { groupFlightActions } from "@/redux/slices/groupFlightSlice";
 import http from "./http.service";
 import Promisable from "./promisable.service";
 
 const baseUrl = "https://b2b-backend-staging-627151212374.asia-east1.run.app";
 
 const GroupService = {
-  getFlights: async (data) => {
-    // setLoading(true);
+  getFlights: async (data, dispatch) => {
+    dispatch(groupFlightActions.setLoading(true));
     http.setJWT();
     console.log("data", data);
     const [success, error] = await Promisable.asPromise(
@@ -15,10 +16,11 @@ const GroupService = {
     );
 
     if (success) {
-      // setLoading(false);
-      // setIsModalOpen(true);
+      dispatch(groupFlightActions.setLoading(false));
+      // dispatch(groupFlightActions.setFlights());
+      console.log("scu", success);
     }
-    // setLoading(false);
+    dispatch(groupFlightActions.setLoading(false));
 
     return [success, error];
   },
