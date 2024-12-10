@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GroupFlightMainImage from "../../assets/GroupFlightMainImage.svg";
 import turkishAirline from "../../assets/turkishAirline.svg";
 import takeOff from "../../assets/takeOff.svg";
@@ -15,7 +15,15 @@ import "./GroupFlight.scss";
 import { airports, bookings } from "@/utils/constant";
 import { handleChange } from "@/utils/globalFunctions.util";
 import GroupService from "@/services/groupFlight.service";
-import { AutoComplete, DatePicker } from "antd";
+// import { AutoComplete, DatePicker } from "antd";
+import AuthService from "@/services/auth.service";
+import { Autocomplete, TextField } from "@mui/material";
+import {
+  groupFlightSearchAutocomplete,
+  groupFlightSearchInput,
+} from "./constant";
+import { DatePicker } from "@mui/x-date-pickers";
+import moment from "moment";
 
 const page = () => {
   const flightFilters = [
@@ -26,19 +34,15 @@ const page = () => {
     { name: "Umrah" },
   ];
 
-  const getLabelByValue = (label) => {
-    const airport = airports.find((airport) => airport.label === label);
-    return airport ? airport.value : "";
-  };
   const [val, setVal] = useState({
     origin: "",
     destination: "",
-    date: "",
+    date: null,
   });
 
   const payload = {
-    origin: getLabelByValue(val.origin),
-    destination: getLabelByValue(val.destination),
+    origin: val.origin,
+    destination: val.destination,
     date: "",
   };
   console.log("pay", payload);
@@ -47,36 +51,6 @@ const page = () => {
 
   const handleSearchFlight = () => {
     GroupService.getFlights(payload);
-  };
-
-  const [options, setOptions] = useState([]);
-
-  const handleChange = (e, setVal) => {
-    const { name, value } = e.target;
-    setVal((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    setOptions(getPanelValue(value));
-  };
-
-  const getPanelValue = (text) => {
-    if (!text) return []; // If no input, return empty options
-    return airports
-      .filter((airport) =>
-        airport.label.toLowerCase().includes(text.toLowerCase())
-      )
-      .map((airport) => ({
-        label: `${airport.label} (${airport.value})`,
-        value: airport.label,
-      }));
-  };
-
-  const handleSelect = (value, field) => {
-    setVal((prevState) => ({
-      ...prevState,
-      [field]: value,
-    }));
   };
 
   console.log("hllo", val);
@@ -109,44 +83,85 @@ const page = () => {
           <div className="searchInputs">
             <div className="input-container">
               <label htmlFor="departure">Flight From</label>
-
-              <AutoComplete
-                value={val.origin}
-                options={options}
-                onChange={(value) =>
-                  handleChange({ target: { name: "origin", value } }, setVal)
+              <Autocomplete
+                disablePortal
+                options={airports}
+                sx={groupFlightSearchAutocomplete}
+                value={
+                  airports?.find((option) => option?.value === val?.origin) ||
+                  null
                 }
-                onSelect={(value) => handleSelect(value, "origin")}
-                placeholder="Select Departure Place"
-                className="searchSingleInput"
-                variant="borderless"
+                onChange={(event, newValue) =>
+                  setVal((prevVal) => ({
+                    ...prevVal,
+                    origin: newValue?.value || "",
+                  }))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder="Select Departure Place"
+                    InputProps={{
+                      ...params.InputProps,
+                      style: groupFlightSearchInput,
+                    }}
+                  />
+                )}
               />
             </div>
             <div className="input-container">
               <label htmlFor="departure">Flight To</label>
-              <AutoComplete
-                value={val.destination}
-                options={options}
-                onChange={(value) =>
-                  handleChange(
-                    { target: { name: "destination", value } },
-                    setVal
-                  )
+              <Autocomplete
+                disablePortal
+                options={airports}
+                sx={groupFlightSearchAutocomplete}
+                value={
+                  airports?.find(
+                    (option) => option?.value === val?.destination
+                  ) || null
                 }
-                className="searchSingleInput"
-                variant="borderless"
-                onSelect={(value) => handleSelect(value, "destination")}
-                placeholder="Select Arrival Place"
+                onChange={(event, newValue) =>
+                  setVal((prevVal) => ({
+                    ...prevVal,
+                    destination: newValue.value || "",
+                  }))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder="Select Arrival Place"
+                    InputProps={{
+                      ...params.InputProps,
+                      style: groupFlightSearchInput,
+                    }}
+                  />
+                )}
               />
             </div>
             <div className="input-container">
-              <label htmlFor="departure">Date</label>
-
+              <label htmlFor="departure">Departure Date</label>
               <DatePicker
-                className="searchSingleInput"
-                placeholder="Select Flight Date"
+                sx={groupFlightSearchAutocomplete}
+                value={val.date ? moment(val.date) : null}
+                onChange={(newValue) =>
+                  setVal((prevVal) => ({
+                    ...prevVal,
+                    date: newValue?.toISOString(),
+                  }))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder="Select Date"
+                    InputProps={{
+                      ...params.InputProps,
+                      style: groupFlightSearchInput,
+                    }}
+                  />
+                )}
               />
             </div>
+
             <div onClick={handleSearchFlight} className="searchInputResult">
               Search
             </div>

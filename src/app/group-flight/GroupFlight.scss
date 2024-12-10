@@ -85,6 +85,7 @@
         position: relative;
         flex-grow: 1; /* This is fine, but ensure inputs don't shrink */
         width: 100%; /* Ensure the container takes up full width */
+        gap: 5px;
       }
 
       label {
