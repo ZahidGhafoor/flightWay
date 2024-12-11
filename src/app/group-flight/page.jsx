@@ -54,8 +54,12 @@ const page = () => {
   };
 
   console.log("hllo", val);
-  const { loading } = useSelector((state) => state.groupFlight);
+  const { loading, flights } = useSelector((state) => state.groupFlight);
   console.log("loading", loading);
+
+  // useEffect(() => {
+  //   AuthService.generateAuthToken();
+  // }, []);
 
   return (
     <div className="container">
@@ -172,94 +176,94 @@ const page = () => {
           </div>
         </div>
 
-        <div className="searchResults">
-          <div className="searchResultHeading">20 Results Found</div>
-          <div className="searchResultCards">
-            {bookings.map((booking, index) => (
-              <div className="searchResultSingleCard" key={index}>
-                <div className="singleCardHeader">
-                  <div className="headerLeft">
-                    <Image src={turkishAirline} alt="FlightWay Logo" />
-                    <div className="flightName">{booking.airline}</div>
+        {flights?.length > 0 && (
+          <div className="searchResults">
+            <div className="searchResultHeading">
+              {flights?.length} Results Found
+            </div>
+            <div className="searchResultCards">
+              {flights.map((booking, index) => (
+                <div className="searchResultSingleCard" key={index}>
+                  <div className="singleCardHeader">
+                    <div className="headerLeft">
+                      <Image src={turkishAirline} alt="FlightWay Logo" />
+                      <div className="flightName">{booking?.airline}</div>
+                    </div>
+                    {/* <div className="flightType">LHE - RUH - LHE</div> */}
+                    <div className="flightType">{booking?.sector}</div>
                   </div>
-                  <div className="flightType">LHE - RUH - LHE</div>
-                </div>
 
-                <div className="cardFlightDetails">
-                  <div className="flightFrom">
-                    <div className="cityName">{booking.from.city}</div>
-                    <div className="flightDate">{booking.from.date}</div>
-                  </div>
-                  <div className="flightTimeInfo">
-                    <div className="TimeUpper">
-                      <div className="flightType">2hr 0 min</div>
+                  <div className="cardFlightDetails">
+                    <div className="flightFrom">
+                      {/* <div className="cityName">{booking.from.city}</div>
+                    <div className="flightDate">{booking.from.date}</div> */}
+                      <div className="cityName">"DOH"</div>
+                      <div className="flightDate">Oct 10</div>
                     </div>
-                    <div className="directFlight">
-                      {booking.isDirect ? "Direct Flight" : "Connecting Flight"}
+                    <div className="flightTimeInfo">
+                      <div className="TimeUpper">
+                        <div className="flightType">2hr 0 min</div>
+                      </div>
+                      <div className="directFlight">
+                        {/* {booking.isDirect ? "Direct Flight" : "Connecting Flight"} */}
+                        Connecting Flight
+                      </div>
+                    </div>
+                    <div className="flightFrom">
+                      <div className="cityName">"DOH"</div>
+                      <div className="flightDate">Oct 10</div>
                     </div>
                   </div>
-                  <div className="flightFrom">
-                    <div className="cityName">{booking.to.city}</div>
-                    <div className="flightDate">{booking.to.date}</div>
+                  <div className="cardFlightDetails">
+                    <div className="flightFrom">
+                      <div className="cityName">"DOH"</div>
+                      <div className="flightDate">Oct 10</div>
+                    </div>
+                    <div className="flightTimeInfo">
+                      <div className="TimeUpper">
+                        <div className="flightType">2hr 0 min</div>
+                      </div>
+                      <div className="directFlight">Connecting Flight</div>
+                    </div>
+                    <div className="flightFrom">
+                      <div className="cityName">"DOH"</div>
+                      <div className="flightDate">Oct 10</div>
+                    </div>
+                  </div>
+                  <div className="cardBottomDetails">
+                    <div className="bottomLeft">
+                      <div className="singleBottomItem">
+                        <Image src={Baggage} alt="FlightWay Logo" />
+                        <div>
+                          <div className="serviceName">Baggage</div>
+                          {/* <div className="serviceInfo">{booking.baggage}</div> */}
+                          <div className="serviceInfo">10 KGs</div>
+                        </div>
+                      </div>
+                      <div className="singleBottomItem">
+                        <Image src={Trolley} alt="FlightWay Logo" />
+                        <div>
+                          <div className="serviceName">CheckIn Bags</div>
+                          <div className="serviceInfo">15 KGs (1 Piece)</div>
+                        </div>
+                      </div>
+                      <div className="singleBottomItem">
+                        <Image src={Meal} alt="FlightWay Logo" />
+                        <div>
+                          <div className="serviceName">Meal</div>
+                          <div className="serviceInfo">Included</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="priceButton">
+                      {booking?.saleFare} /- PKR
+                    </div>
                   </div>
                 </div>
-                <div className="cardFlightDetails">
-                  <div className="flightFrom">
-                    <div className="cityName">{booking.from.city}</div>
-                    <div className="flightDate">{booking.from.date}</div>
-                  </div>
-                  <div className="flightTimeInfo">
-                    <div className="TimeUpper">
-                      <div className="flightType">2hr 0 min</div>
-
-                      {/* <div className="timeUpperLeft">
-                        <Image src={takeOff} alt="FlightWay Logo" />
-                        <div className="flightTime">{booking.from.time}</div>
-                      </div>
-                      <div className="timeUpperLeft">
-                        <div className="flightTime">{booking.to.time}</div>
-                        <Image src={takeLand} alt="FlightWay Logo" />
-                      </div> */}
-                    </div>
-                    <div className="directFlight">
-                      {booking.isDirect ? "Direct Flight" : "Connecting Flight"}
-                    </div>
-                  </div>
-                  <div className="flightFrom">
-                    <div className="cityName">{booking.to.city}</div>
-                    <div className="flightDate">{booking.to.date}</div>
-                  </div>
-                </div>
-                <div className="cardBottomDetails">
-                  <div className="bottomLeft">
-                    <div className="singleBottomItem">
-                      <Image src={Baggage} alt="FlightWay Logo" />
-                      <div>
-                        <div className="serviceName">Baggage</div>
-                        <div className="serviceInfo">{booking.baggage}</div>
-                      </div>
-                    </div>
-                    <div className="singleBottomItem">
-                      <Image src={Trolley} alt="FlightWay Logo" />
-                      <div>
-                        <div className="serviceName">CheckIn Bags</div>
-                        <div className="serviceInfo">{booking.checkInBags}</div>
-                      </div>
-                    </div>
-                    <div className="singleBottomItem">
-                      <Image src={Meal} alt="FlightWay Logo" />
-                      <div>
-                        <div className="serviceName">Meal</div>
-                        <div className="serviceInfo">{booking.meal}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="priceButton">{booking.price}</div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="customizeGroup">
           <div className="groupLeft">

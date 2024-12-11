@@ -209,6 +209,8 @@ export const airports = [
     label: "Prince Mohammed Bin Abdulaziz International Airport",
     value: "MED",
   }, // Madinah
+  { label: "Muscat International Airport", value: "MCT" },
+
   { label: "King Fahd International Airport", value: "DMM" }, // Dammam
   { label: "Prince Sultan bin Abdulaziz International Airport", value: "TUU" }, // Tabuk
   { label: "Abha International Airport", value: "AHB" }, // Abha

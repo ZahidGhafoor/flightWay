@@ -17,8 +17,9 @@ const GroupService = {
 
     if (success) {
       dispatch(groupFlightActions.setLoading(false));
+      dispatch(groupFlightActions.setFlights(success?.data));
       // dispatch(groupFlightActions.setFlights());
-      console.log("scu", success);
+      // console.log("scu", success).d;
     }
     dispatch(groupFlightActions.setLoading(false));
 
