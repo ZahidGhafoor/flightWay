@@ -250,7 +250,9 @@ const page = () => {
                             <div className="flightType">2hr 0 min</div>
                           </div>
                           <div className="directFlight">
-                            {/* {booking.isDirect ? "Direct Flight" : "Connecting Flight"} */}
+                            {data.isConnectedFlight
+                              ? "Direct Flight"
+                              : "Connecting Flight"}
                             Connecting Flight
                           </div>
                         </div>
@@ -287,7 +289,7 @@ const page = () => {
                           <div className="serviceName">Baggage</div>
                           {/* <div className="serviceInfo">{booking.baggage}</div> */}
                           <div className="serviceInfo">
-                            {flights?.[0].baggageAllowed}
+                            {flights?.[0]?.groupItineraries?.baggageAllowed}
                           </div>
                         </div>
                       </div>
@@ -295,7 +297,7 @@ const page = () => {
                         <Image src={Trolley} alt="FlightWay Logo" />
                         <div>
                           <div className="serviceName">CheckIn Bags</div>
-                          <div className="serviceInfo">15 KGs (1 Piece)</div>
+                          <div className="serviceInfo"></div>
                         </div>
                       </div>
                       <div className="singleBottomItem">
@@ -303,7 +305,9 @@ const page = () => {
                         <div>
                           <div className="serviceName">Meal</div>
                           <div className="serviceInfo">
-                            {flights?.[0].isMeal ? "Included" : "Not Included"}
+                            {flights?.[0]?.groupItineraries?.isMeal
+                              ? "Included"
+                              : "Not Included"}
                           </div>
                         </div>
                       </div>

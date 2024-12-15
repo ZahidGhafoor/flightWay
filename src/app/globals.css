@@ -20,3 +20,29 @@ a {
   max-width: 1362px;
   margin: 0 auto;
 }
+
+.doubleFieldParent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 34px;
+}
+.doubleFieldChild {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.doubleFieldSingleChild {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.inputLabel {
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 8px;
+}
