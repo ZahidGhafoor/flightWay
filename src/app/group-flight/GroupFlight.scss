@@ -179,6 +179,11 @@
           align-items: center;
           gap: 12px;
           margin-bottom: 10px;
+          img {
+            height: 30px;
+            width: 30px;
+            border-radius: 99px;
+          }
           .flightName {
             color: #000;
             text-align: center;

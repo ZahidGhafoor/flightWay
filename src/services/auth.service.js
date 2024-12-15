@@ -19,9 +19,8 @@ const AuthService = {
     );
 
     if (success) {
-      console.log("succ", success);
+      localStorage.setItem("token", `Bearer ${success?.data?.token}`);
     }
-    // setLoading(false);
 
     return [success, error];
   },

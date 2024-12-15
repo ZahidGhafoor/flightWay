@@ -57,9 +57,45 @@ const page = () => {
   const { loading, flights } = useSelector((state) => state.groupFlight);
   console.log("loading", loading);
 
-  // useEffect(() => {
-  //   AuthService.generateAuthToken();
-  // }, []);
+  const CallItAfterOneHour = () => {
+    console.log("Function Called After 1 Hour");
+  };
+
+  useEffect(() => {
+    const TOKEN_EXPIRY_TIME = 3600000; // 1 hour in milliseconds
+    const currentTime = Date.now();
+    const storedTime = localStorage.getItem("tokenGeneratedAt");
+
+    const callTokenFunction = () => {
+      console.log("Calling generateAuthToken now...");
+      AuthService.generateAuthToken();
+      localStorage.setItem("tokenGeneratedAt", Date.now());
+      CallItAfterOneHour();
+    };
+
+    // Check if token is expired or not present
+    if (
+      !storedTime ||
+      currentTime - parseInt(storedTime, 10) >= TOKEN_EXPIRY_TIME
+    ) {
+      // If no token or expired, generate a new token
+      callTokenFunction();
+    } else {
+      // If token exists and valid, calculate remaining time
+      const remainingTime =
+        TOKEN_EXPIRY_TIME - (currentTime - parseInt(storedTime, 10));
+      console.log("Token still valid, calling in:", remainingTime);
+
+      const timer = setTimeout(() => {
+        callTokenFunction();
+      }, remainingTime);
+
+      // Cleanup
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  console.log("flightsssss", flights);
 
   return (
     <div className="container">
@@ -186,35 +222,48 @@ const page = () => {
                 <div className="searchResultSingleCard" key={index}>
                   <div className="singleCardHeader">
                     <div className="headerLeft">
-                      <Image src={turkishAirline} alt="FlightWay Logo" />
+                      <Image
+                        src={booking?.airlineLogoUrl}
+                        alt="FlightWay Logo"
+                        height={30}
+                        width={30}
+                      />
                       <div className="flightName">{booking?.airline}</div>
                     </div>
                     {/* <div className="flightType">LHE - RUH - LHE</div> */}
                     <div className="flightType">{booking?.sector}</div>
                   </div>
 
-                  <div className="cardFlightDetails">
-                    <div className="flightFrom">
-                      {/* <div className="cityName">{booking.from.city}</div>
+                  {booking?.groupItineraries?.map((data, i) => {
+                    return (
+                      <div key={i} className="cardFlightDetails">
+                        <div className="flightFrom">
+                          {/* <div className="cityName">{booking.from.city}</div>
                     <div className="flightDate">{booking.from.date}</div> */}
-                      <div className="cityName">"DOH"</div>
-                      <div className="flightDate">Oct 10</div>
-                    </div>
-                    <div className="flightTimeInfo">
-                      <div className="TimeUpper">
-                        <div className="flightType">2hr 0 min</div>
+                          <div className="cityName">{data?.departure}</div>
+                          <div className="flightDate">
+                            {data?.departureDateTime}
+                          </div>
+                        </div>
+                        <div className="flightTimeInfo">
+                          <div className="TimeUpper">
+                            <div className="flightType">2hr 0 min</div>
+                          </div>
+                          <div className="directFlight">
+                            {/* {booking.isDirect ? "Direct Flight" : "Connecting Flight"} */}
+                            Connecting Flight
+                          </div>
+                        </div>
+                        <div className="flightFrom">
+                          <div className="cityName">{data?.arrival}</div>
+                          <div className="flightDate">
+                            {data?.arrivalDateTime}
+                          </div>
+                        </div>
                       </div>
-                      <div className="directFlight">
-                        {/* {booking.isDirect ? "Direct Flight" : "Connecting Flight"} */}
-                        Connecting Flight
-                      </div>
-                    </div>
-                    <div className="flightFrom">
-                      <div className="cityName">"DOH"</div>
-                      <div className="flightDate">Oct 10</div>
-                    </div>
-                  </div>
-                  <div className="cardFlightDetails">
+                    );
+                  })}
+                  {/* <div className="cardFlightDetails">
                     <div className="flightFrom">
                       <div className="cityName">"DOH"</div>
                       <div className="flightDate">Oct 10</div>
@@ -229,7 +278,7 @@ const page = () => {
                       <div className="cityName">"DOH"</div>
                       <div className="flightDate">Oct 10</div>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="cardBottomDetails">
                     <div className="bottomLeft">
                       <div className="singleBottomItem">
@@ -237,7 +286,9 @@ const page = () => {
                         <div>
                           <div className="serviceName">Baggage</div>
                           {/* <div className="serviceInfo">{booking.baggage}</div> */}
-                          <div className="serviceInfo">10 KGs</div>
+                          <div className="serviceInfo">
+                            {flights?.[0].baggageAllowed}
+                          </div>
                         </div>
                       </div>
                       <div className="singleBottomItem">
@@ -251,7 +302,9 @@ const page = () => {
                         <Image src={Meal} alt="FlightWay Logo" />
                         <div>
                           <div className="serviceName">Meal</div>
-                          <div className="serviceInfo">Included</div>
+                          <div className="serviceInfo">
+                            {flights?.[0].isMeal ? "Included" : "Not Included"}
+                          </div>
                         </div>
                       </div>
                     </div>

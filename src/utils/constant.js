@@ -193,6 +193,7 @@ export const navbarLinks = [
 export const airports = [
   { label: "Allama Iqbal International Airport", value: "LHE" },
   { label: "Benazir Bhutto International Airport", value: "ISB" },
+  { label: "Muscat International Airport", value: "MCT" },
   { label: "Jinnah International Airport", value: "KHI" },
   { label: "Peshawar Bacha Khan International Airport", value: "PEW" },
   { label: "Multan International Airport", value: "MUX" },
@@ -209,8 +210,6 @@ export const airports = [
     label: "Prince Mohammed Bin Abdulaziz International Airport",
     value: "MED",
   }, // Madinah
-  { label: "Muscat International Airport", value: "MCT" },
-
   { label: "King Fahd International Airport", value: "DMM" }, // Dammam
   { label: "Prince Sultan bin Abdulaziz International Airport", value: "TUU" }, // Tabuk
   { label: "Abha International Airport", value: "AHB" }, // Abha
