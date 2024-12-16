@@ -15,6 +15,9 @@ a {
 
 .cursor {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container {
   max-width: 1362px;

@@ -10,6 +10,8 @@ import emailInput from "@/assets/emailInput.svg";
 import mobileInput from "@/assets/mobileInput.svg";
 import Image from "next/image";
 import { Button } from "@/components/Atom/Button";
+import { handleChange } from "@/utils/globalFunctions.util";
+import GeneratingTicket from "@/components/Templates/GeneratingTicket";
 
 const BookFlight = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -28,14 +30,41 @@ const BookFlight = () => {
   const ticketHolders = [
     {
       name: "Adult",
+      key: "adult",
     },
     {
       name: "Children (2-11 Years)",
+      key: "child",
     },
     {
       name: "Infants (0 to 23 Months)",
+      key: "infant",
     },
   ];
+
+  const [val, setVal] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    adult: 0,
+    child: 0,
+    infant: 0,
+  });
+  console.log("val", val);
+
+  const handleIncrement = (key) => {
+    setVal((prevState) => ({
+      ...prevState,
+      [key]: prevState[key] + 1,
+    }));
+  };
+
+  const handleDecrement = (key) => {
+    setVal((prevState) => ({
+      ...prevState,
+      [key]: prevState[key] > 0 ? prevState[key] - 1 : 0,
+    }));
+  };
   return (
     <div className="bookingFlightContainer container">
       <div className="flightHeader">
@@ -72,6 +101,9 @@ const BookFlight = () => {
                 label={"Full Name"}
                 placeholder="Enter your Full Name"
                 icon={Person}
+                name="fullName"
+                value={val.fullName}
+                handleChange={(e) => handleChange(e, setVal)}
               />
             </div>
             <div className="doubleFieldChild">
@@ -79,6 +111,9 @@ const BookFlight = () => {
                 label={"Email Address"}
                 placeholder="Enter your Email Address"
                 icon={emailInput}
+                name="email"
+                value={val.email}
+                handleChange={(e) => handleChange(e, setVal)}
               />
             </div>
           </div>
@@ -88,6 +123,9 @@ const BookFlight = () => {
                 label={"Mobile No"}
                 placeholder="Enter your Mobile No"
                 icon={mobileInput}
+                name="mobile"
+                value={val.mobile}
+                handleChange={(e) => handleChange(e, setVal)}
               />
             </div>
             <div className="doubleFieldSingleChild"></div>
@@ -102,26 +140,34 @@ const BookFlight = () => {
                     {i === 0 && <span style={{ color: "red" }}>*</span>}
                   </div>
                   <div className="tickerButtons">
-                    <Image
-                      src={PlusSign}
-                      alt="FlightWay Logo"
-                      height={78}
-                      width={101}
-                    />
-                    <div className="ticketNumber">01</div>
-                    <Image
-                      src={MinusSign}
-                      alt="FlightWay Logo"
-                      height={78}
-                      width={101}
-                    />
+                    <div
+                      onClick={() => handleDecrement(data.key)}
+                      className="cursor">
+                      <Image
+                        src={MinusSign}
+                        alt="Minus"
+                        height={78}
+                        width={101}
+                      />
+                    </div>
+                    <div className="ticketNumber">{val[data.key]}</div>
+                    <div
+                      onClick={() => handleIncrement(data.key)}
+                      className="cursor">
+                      <Image
+                        src={PlusSign}
+                        alt="Plus"
+                        height={78}
+                        width={101}
+                      />
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
 
-          <div className="generatingFlightTicket">
+          {/* <div className="generatingFlightTicket">
             <div className="generateFlightHeader">
               <div className="left">
                 <Image
@@ -147,7 +193,8 @@ const BookFlight = () => {
                 86,000/- PKR
               </div>
             </div>
-          </div>
+          </div> */}
+          <GeneratingTicket />
           <div className="buttonParent">
             <Button>Continue</Button>
           </div>
