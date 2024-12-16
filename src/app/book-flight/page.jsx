@@ -5,7 +5,11 @@ import Input from "@/components/Atom/Input";
 import Person from "@/assets/Person.svg";
 import PlusSign from "@/assets/PlusSign.svg";
 import MinusSign from "@/assets/MinusSign.svg";
+import turkishAirline from "@/assets/turkishAirline.svg";
+import emailInput from "@/assets/emailInput.svg";
+import mobileInput from "@/assets/mobileInput.svg";
 import Image from "next/image";
+import { Button } from "@/components/Atom/Button";
 
 const BookFlight = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -74,7 +78,7 @@ const BookFlight = () => {
               <Input
                 label={"Email Address"}
                 placeholder="Enter your Email Address"
-                icon={Person}
+                icon={emailInput}
               />
             </div>
           </div>
@@ -83,7 +87,7 @@ const BookFlight = () => {
               <Input
                 label={"Mobile No"}
                 placeholder="Enter your Mobile No"
-                icon={Person}
+                icon={mobileInput}
               />
             </div>
             <div className="doubleFieldSingleChild"></div>
@@ -115,6 +119,37 @@ const BookFlight = () => {
                 </div>
               );
             })}
+          </div>
+
+          <div className="generatingFlightTicket">
+            <div className="generateFlightHeader">
+              <div className="left">
+                <Image
+                  src={turkishAirline}
+                  alt="FlightWay Logo"
+                  height={50}
+                  width={50}
+                />
+                <div className="airlineName">Turkish Airlines</div>
+              </div>
+              <div className="rightFlightNo">Flight No: XYZ-123</div>
+            </div>
+            <div className="route">LHE - RUH</div>
+            <div className="totalTickets">
+              <div className="tickerHonor">Adult * 1</div>
+              <div className="singlePrice">86,000/- PKR</div>
+            </div>
+            <div className="totalTickets">
+              <div style={{ fontWeight: "700" }} className="tickerHonor">
+                Total
+              </div>
+              <div style={{ fontWeight: "700" }} className="singlePrice">
+                86,000/- PKR
+              </div>
+            </div>
+          </div>
+          <div className="buttonParent">
+            <Button>Continue</Button>
           </div>
         </div>
       </div>

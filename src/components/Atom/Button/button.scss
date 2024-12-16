@@ -1,0 +1,138 @@
+$colors: (
+  green: #0e7440,
+  softPink: #f8bbd0,
+  white: #ffffff,
+  infoBlue: #416bff,
+  infoBlueHover: #2f4cb5,
+  grayLight: #dcdcdc,
+  grayLighter: #f2f2f2,
+  borderGray: #dadde3,
+);
+
+$sizes: (
+  large: (
+    padding: 16px 50px,
+    border-radius: 20px,
+    gap: 12px,
+    font-size: 28px,
+    line-height: 140%,
+  ),
+  medium: (
+    padding: 8px 16px,
+    border-radius: 8px,
+    gap: 8px,
+    font-size: 16px,
+    line-height: 140%,
+  ),
+  small: (
+    padding: 7px 12px,
+    border-radius: 8px,
+    gap: 8px,
+    font-size: 14px,
+    line-height: 130%,
+  ),
+);
+
+$variants: (
+  primary: (
+    border: none,
+    background: map-get($colors, green),
+    color: map-get($colors, white),
+    hover: map-get($colors, softPink),
+    pressed: map-get($colors, softPink),
+  ),
+  secondary: (
+    border: none,
+    background: transparent,
+    hover: map-get($colors, grayLighter),
+    color: map-get($colors, midnightBlue),
+  ),
+  info: (
+    border: none,
+    background: map-get($colors, infoBlue),
+    hover: map-get($colors, infoBlueHover),
+    color: map-get($colors, white),
+  ),
+  outlined: (
+    border: 1px solid map-get($colors, borderGray),
+    background: transparent,
+    color: map-get($colors, midnightBlue),
+  ),
+  disabled: (
+    border: none,
+    background: map-get($colors, grayLight),
+    color: map-get($colors, white),
+  ),
+);
+
+.button {
+  width: fit-content;
+  border-radius: map-get($sizes, large, border-radius);
+  outline: none;
+  font-style: normal;
+  font-weight: 500;
+  //   font-size: 16px;
+  outline: none;
+  font-size: map-get($sizes, large, font-size);
+
+  line-height: 140%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: map-get($sizes, large, gap);
+  padding: map-get($sizes, large, padding);
+  background: map-get($sizes, large, background);
+  color: map-get($sizes, large, color);
+  border: none;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &.disabled {
+    cursor: not-allowed;
+    transition: none;
+  }
+
+  &.primary {
+    background: map-get($variants, primary, background);
+    color: map-get($variants, primary, color);
+  }
+
+  &.secondary {
+    background: map-get($variants, secondary, background);
+    color: map-get($variants, secondary, color);
+  }
+
+  &.info {
+    background: map-get($variants, info, background);
+    color: map-get($variants, info, color);
+  }
+
+  &.outlined {
+    border: map-get($variants, outlined, border);
+    background: map-get($variants, outlined, background);
+    color: map-get($variants, outlined, color);
+  }
+
+  &.disabled {
+    background: map-get($variants, disabled, background);
+    color: map-get($variants, disabled, color);
+  }
+
+  &:hover {
+    background: map-get($variants, hover);
+    color: map-get($variants, pressed);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    color: map-get($variants, pressed);
+  }
+}
+
+.button-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
