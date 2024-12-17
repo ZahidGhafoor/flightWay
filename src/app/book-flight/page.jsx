@@ -1,15 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./book-flight.scss";
 import PersonalDetails from "./components/PersonalDetails";
 import { groupFlightActions } from "@/redux/slices/groupFlightSlice";
 import { useDispatch, useSelector } from "react-redux";
 import PassengerDetails from "./components/PassengerDetails";
 import { Button } from "@/components/Atom/Button";
+import PaymentDetails from "./components/PaymentDetails";
+import { useRouter } from "next/navigation";
+import { isBasicValid } from "./constant";
+import ETicket from "./components/ETicket";
 
 const BookFlight = () => {
   const dispatch = useDispatch();
   const tab = useSelector((state) => state.groupFlight.tab);
+  const flightData = JSON.parse(localStorage.getItem("flightData"));
+  const router = useRouter();
 
   const steps = [
     "Personal Details",
@@ -18,20 +24,42 @@ const BookFlight = () => {
     "E Ticket",
   ];
 
+  useEffect(() => {
+    if (!flightData?._id) {
+      router.push("/group-flight");
+    }
+  }, []);
+
   const handleStepClick = (index) => {
     setCurrentStep(index);
   };
 
-  const [val, setVal] = useState({
-    fullName: "",
-    email: "",
-    mobile: "",
-    adult: 0,
-    child: 0,
-    infant: 0,
-    passengers: [],
+  const [val, setVal] = useState(() => {
+    const savedState = localStorage.getItem("bookingForm");
+    return savedState
+      ? JSON.parse(savedState)
+      : {
+          fullName: "",
+          email: "",
+          mobile: "",
+          adult: 0,
+          child: 0,
+          infant: 0,
+          passengers: [],
+        };
   });
+  useEffect(() => {
+    localStorage.setItem("bookingForm", JSON.stringify(val));
+  }, [val]);
+  useEffect(() => {
+    if (!flightData?._id) {
+      router.push("/group-flight");
+    }
+  }, [val, flightData]);
+
   console.log("val", val);
+
+  const isValid = isBasicValid(tab, val);
 
   const handleSubmit = () => {
     if (tab === 5) {
@@ -43,7 +71,27 @@ const BookFlight = () => {
   const currentTab = [
     <PersonalDetails val={val} setVal={setVal} handleSubmit={handleSubmit} />,
     <PassengerDetails val={val} setVal={setVal} handleSubmit={handleSubmit} />,
+    <PaymentDetails val={val} setVal={setVal} handleSubmit={handleSubmit} />,
+    <ETicket val={val} setVal={setVal} handleSubmit={handleSubmit} />,
   ];
+
+  const [time, setTime] = useState(15 * 60); // 15 minutes in seconds
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
+      .toString()
+      .padStart(2, "0")}`;
+  };
   return (
     <div className="bookingFlightContainer container">
       <div className="flightHeader">
@@ -53,7 +101,7 @@ const BookFlight = () => {
         </div>
         <div className="left">
           <div className="expireIn">Booking will be expired in</div>
-          <div className="expireTime">15:00 minutes</div>
+          <div className="expireTime">{formatTime(time)} minutes</div>
         </div>
       </div>
       <div className="stepper-container">
@@ -69,12 +117,18 @@ const BookFlight = () => {
       </div>
       {currentTab[tab]}
       <div className="buttonParent">
+        {tab !== 0 && (
+          <Button
+            variant={"secondary"}
+            onClick={() => dispatch(groupFlightActions.setTab(tab - 1))}>
+            Back
+          </Button>
+        )}
         <Button
-          variant={tab === 0 ? "disabled" : "secondary"}
-          onClick={() => dispatch(groupFlightActions.setTab(tab - 1))}>
-          Back
+          variant={!isValid ? "disabled" : "primary"}
+          onClick={handleSubmit}>
+          {tab === 2 ? "Book Online" : "Continue"}
         </Button>
-        <Button onClick={handleSubmit}>Continue</Button>
       </div>
     </div>
   );

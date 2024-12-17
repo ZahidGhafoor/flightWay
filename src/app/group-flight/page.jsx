@@ -23,6 +23,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import CircleLoader from "@/components/Atom/CircleLoader";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const flightFilters = [
@@ -61,41 +62,46 @@ const page = () => {
     console.log("Function Called After 1 Hour");
   };
 
-  useEffect(() => {
-    const TOKEN_EXPIRY_TIME = 3600000; // 1 hour in milliseconds
-    const currentTime = Date.now();
-    const storedTime = localStorage.getItem("tokenGeneratedAt");
+  // useEffect(() => {
+  //   AuthService.generateAuthToken();
+  // }, []);
+  // useEffect(() => {
+  //   const TOKEN_EXPIRY_TIME = 3600000; // 1 hour in milliseconds
+  //   const currentTime = Date.now();
+  //   const storedTime = localStorage.getItem("tokenGeneratedAt");
 
-    const callTokenFunction = () => {
-      console.log("Calling generateAuthToken now...");
-      AuthService.generateAuthToken();
-      localStorage.setItem("tokenGeneratedAt", Date.now());
-      CallItAfterOneHour();
-    };
+  //   const callTokenFunction = () => {
+  //     console.log("Calling generateAuthToken now...");
+  //     AuthService.generateAuthToken();
+  //     localStorage.setItem("tokenGeneratedAt", Date.now());
+  //     CallItAfterOneHour();
+  //   };
 
-    // Check if token is expired or not present
-    if (
-      !storedTime ||
-      currentTime - parseInt(storedTime, 10) >= TOKEN_EXPIRY_TIME
-    ) {
-      // If no token or expired, generate a new token
-      callTokenFunction();
-    } else {
-      // If token exists and valid, calculate remaining time
-      const remainingTime =
-        TOKEN_EXPIRY_TIME - (currentTime - parseInt(storedTime, 10));
-      console.log("Token still valid, calling in:", remainingTime);
+  //   // Check if token is expired or not present
+  //   if (
+  //     !storedTime ||
+  //     currentTime - parseInt(storedTime, 10) >= TOKEN_EXPIRY_TIME
+  //   ) {
+  //     // If no token or expired, generate a new token
+  //     callTokenFunction();
+  //   } else {
+  //     // If token exists and valid, calculate remaining time
+  //     const remainingTime =
+  //       TOKEN_EXPIRY_TIME - (currentTime - parseInt(storedTime, 10));
+  //     console.log("Token still valid, calling in:", remainingTime);
 
-      const timer = setTimeout(() => {
-        callTokenFunction();
-      }, remainingTime);
+  //     const timer = setTimeout(() => {
+  //       callTokenFunction();
+  //     }, remainingTime);
 
-      // Cleanup
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  //     // Cleanup
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, []);
 
   console.log("flightsssss", flights);
+
+  const router = useRouter();
 
   return (
     <div className="container">
@@ -219,7 +225,13 @@ const page = () => {
             </div>
             <div className="searchResultCards">
               {flights.map((booking, index) => (
-                <div className="searchResultSingleCard" key={index}>
+                <div
+                  onClick={() => {
+                    router.push("/book-flight");
+                    localStorage.setItem("flightData", JSON.stringify(booking));
+                  }}
+                  className="searchResultSingleCard"
+                  key={index}>
                   <div className="singleCardHeader">
                     <div className="headerLeft">
                       <Image

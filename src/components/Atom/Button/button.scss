@@ -7,6 +7,9 @@ $colors: (
   grayLight: #dcdcdc,
   grayLighter: #f2f2f2,
   borderGray: #dadde3,
+  yellow: #feb704,
+  black: black,
+  red: #f91212,
 );
 
 $sizes: (
@@ -18,10 +21,10 @@ $sizes: (
     line-height: 140%,
   ),
   medium: (
-    padding: 8px 16px,
+    padding: 14px 50px,
     border-radius: 8px,
     gap: 8px,
-    font-size: 16px,
+    font-size: 20px,
     line-height: 140%,
   ),
   small: (
@@ -43,9 +46,13 @@ $variants: (
   ),
   secondary: (
     border: none,
-    background: transparent,
-    hover: map-get($colors, grayLighter),
-    color: map-get($colors, midnightBlue),
+    background: map-get($colors, yellow),
+    color: map-get($colors, black),
+  ),
+  warning: (
+    border: none,
+    background: map-get($colors, red),
+    color: map-get($colors, white),
   ),
   info: (
     border: none,
@@ -93,6 +100,27 @@ $variants: (
     transition: none;
   }
 
+  &.large {
+    padding: map-get($sizes, large, padding);
+    border-radius: map-get($sizes, large, border-radius);
+    gap: map-get($sizes, large, gap);
+    font-size: map-get($sizes, large, font-size);
+  }
+
+  &.medium {
+    padding: map-get($sizes, medium, padding);
+    border-radius: map-get($sizes, medium, border-radius);
+    gap: map-get($sizes, medium, gap);
+    font-size: map-get($sizes, medium, font-size);
+  }
+
+  &.small {
+    padding: map-get($sizes, small, padding);
+    border-radius: map-get($sizes, small, border-radius);
+    gap: map-get($sizes, small, gap);
+    font-size: map-get($sizes, small, font-size);
+  }
+
   &.primary {
     background: map-get($variants, primary, background);
     color: map-get($variants, primary, color);
@@ -101,6 +129,10 @@ $variants: (
   &.secondary {
     background: map-get($variants, secondary, background);
     color: map-get($variants, secondary, color);
+  }
+  &.warning {
+    background: map-get($variants, warning, background);
+    color: map-get($variants, warning, color);
   }
 
   &.info {

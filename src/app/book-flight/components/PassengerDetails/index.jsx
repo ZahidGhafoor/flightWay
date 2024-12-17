@@ -14,25 +14,33 @@ import GeneratingTicket from "@/components/Templates/GeneratingTicket";
 const PassengerDetails = ({ val, setVal, handleSubmit }) => {
   useEffect(() => {
     const totalPassengers = val.adult + val.child + val.infant;
+
+    // Generate updated passengers array
     const updatedPassengers = Array.from(
       { length: totalPassengers },
-      (_, index) => ({
-        id: index + 1,
-        type:
+      (_, index) => {
+        const existingPassenger = val.passengers?.[index] || {}; // Keep existing passenger if it exists
+        const passengerType =
           index < val.adult
             ? "Adult"
             : index < val.adult + val.child
             ? "Child"
-            : "Infant",
-        fullName: "",
-        surName: "",
-        gender: "",
-        dob: null,
-        passportNumber: "",
-        passportExpiry: null,
-      })
+            : "Infant";
+
+        return {
+          id: index + 1,
+          type: passengerType,
+          fullName: existingPassenger.fullName || "",
+          surName: existingPassenger.surName || "",
+          gender: existingPassenger.gender || "",
+          dob: existingPassenger.dob || null,
+          passportNumber: existingPassenger.passportNumber || "",
+          passportExpiry: existingPassenger.passportExpiry || null,
+        };
+      }
     );
 
+    // Update state with the new passengers
     setVal((prev) => ({ ...prev, passengers: updatedPassengers }));
   }, [val.adult, val.child, val.infant]);
 
@@ -162,7 +170,7 @@ const PassengerDetails = ({ val, setVal, handleSubmit }) => {
           );
         })}
       </div>
-      <GeneratingTicket />
+      <GeneratingTicket val={val} />
     </div>
   );
 };

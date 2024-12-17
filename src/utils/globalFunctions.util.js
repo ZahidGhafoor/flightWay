@@ -5,3 +5,8 @@ export const handleChange = (e, setVal) => {
     [name]: value,
   }));
 };
+
+export const required = (value) =>
+  value || typeof value === "number" ? undefined : "Required";
+
+export const greaterThanOne = (value) => (value > 0 ? undefined : "Required");

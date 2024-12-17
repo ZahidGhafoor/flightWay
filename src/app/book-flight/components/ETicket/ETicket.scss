@@ -1,0 +1,301 @@
+.eTickerContainer {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px 0;
+  .orderIdParent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 30px;
+    background: #f2f2f2;
+    padding: 44px 33px;
+    .leftOrder {
+      display: flex;
+      align-items: center;
+      gap: 174px;
+      .firstLeft {
+        display: flex;
+        flex-direction: column;
+        .heading {
+          color: #0e7440;
+          font-size: 38px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+        .orderNumber {
+          color: #000;
+          font-size: 28px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+    }
+  }
+
+  .ticketShapeContainer {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .ticketShape {
+    border-radius: 25px;
+    background: #f2f2f2;
+    padding: 14px 24px 26px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    flex-grow: 3;
+    .ticketHeader {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      .fightName {
+        color: #000;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+    .flightBody {
+      border-radius: 20px;
+      background: #fff;
+      padding: 44px 20px;
+      .upperBody {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+        .first {
+          display: flex;
+          flex-direction: column;
+          .fromAB {
+            color: #000;
+
+            font-family: "Montserrat", sans-serif;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 4.8px;
+          }
+          .fromActual {
+            color: #0e7440;
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+        }
+        .bodyCenter {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          width: 70%;
+          .upperTime {
+            color: #000;
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+          .circles {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            .firstCircle {
+              width: 25px;
+              height: 25px;
+              flex-shrink: 0;
+              background-color: #000;
+              border-radius: 99px;
+            }
+          }
+          .circles:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 0px;
+            right: 0px;
+            height: 2px;
+            background: none;
+            border-top: 2px dashed black; /* Dashed line */
+            z-index: 0; /* Send it behind the circles */
+          }
+        }
+      }
+
+      .ticketFooter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .baggageInfo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          .singleBottomItem {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            .serviceName {
+              color: #000;
+              text-align: center;
+              font-family: "Montserrat", sans-serif;
+
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
+            .serviceInfo {
+              color: #0e7440;
+              text-align: center;
+              font-family: "Montserrat", sans-serif;
+
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+            }
+          }
+        }
+        .footerLeft {
+          display: flex;
+          flex-direction: column;
+          .time {
+            color: #0e7440;
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+          }
+          .date {
+            color: #000;
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+        }
+      }
+    }
+  }
+
+  .buyerSummary {
+    border-radius: 30px;
+    background: #f2f2f2;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+    // justify-content: space-between;
+    // height: 100%;
+    .heading {
+      color: #000;
+      text-align: center;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .infoLeft {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .infoKey {
+        color: #000;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+      .infoValue {
+        color: #000;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+    .buttonsParent {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .withFare {
+      display: flex;
+      align-items: center;
+      //   gap: 10px;
+      .checkboxLabel {
+        color: #000;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+
+  .passengerDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    border-radius: 30px;
+    background: #f2f2f2;
+    padding: 14px 29px;
+    .cardHeading {
+      color: #0e7440;
+      font-size: 38px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .totalPassengers {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .singlePassenger {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .name {
+          color: #000;
+          font-size: 28px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+        .name:first-child {
+          width: 400px;
+        }
+
+        .name:nth-child(2) {
+          width: 400px;
+        }
+
+        .name:last-child {
+          flex-grow: 0; /* Type (e.g., "Adult") gets the least or no extra space */
+        }
+      }
+    }
+  }
+}

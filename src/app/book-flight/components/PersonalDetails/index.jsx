@@ -111,7 +111,7 @@ const PersonalDetails = ({ val, setVal, handleSubmit }) => {
           })}
         </div>
 
-        <GeneratingTicket />
+        <GeneratingTicket val={val} />
       </div>
     </div>
   );
