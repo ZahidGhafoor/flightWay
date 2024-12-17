@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   flights: [],
   loading: false,
+  tab: 0,
 };
 
 export const groupFlightSlice = createSlice({
@@ -14,6 +15,9 @@ export const groupFlightSlice = createSlice({
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
+    },
+    setTab(state, action) {
+      state.tab = action.payload;
     },
   },
 });

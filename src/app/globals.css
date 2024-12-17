@@ -33,7 +33,9 @@ a {
 .doubleFieldChild {
   display: flex;
   align-items: center;
-  flex-grow: 1;
+  /* flex-grow: 1;
+  box-sizing: border-box; */
+  width: 50%;
 }
 .doubleFieldSingleChild {
   display: flex;

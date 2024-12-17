@@ -1,7 +1,6 @@
 import React from "react";
 import { TextField, InputAdornment, Box, Typography } from "@mui/material";
 import Image from "next/image";
-import "./input.scss";
 
 function Input({
   icon,

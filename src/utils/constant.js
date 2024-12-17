@@ -243,3 +243,9 @@ export const airports = [
   { label: "Cardiff Airport", value: "CWL" },
   { label: "Nottingham East Midlands Airport", value: "EMA" },
 ];
+
+export const genderOptions = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "Other", label: "Other" },
+];
